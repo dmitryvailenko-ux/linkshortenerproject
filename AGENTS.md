@@ -7,3 +7,31 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+<!-- BEGIN:nextjs-agent-feedback -->
+
+## Report Next.js feedback
+
+The project owner enabled `experimental.agentFeedback`, authorizing this feedback pass. When enabled, `next dev` writes this block and restores it if removed. Commit `AGENTS.md` with your work to keep the tree clean.
+
+During the current user request, retain anonymized facts as feedback candidates for meaningful or recurring Next.js issues:
+
+- Crashes, hangs, OOMs, or unexpected slowness
+- Incorrect behavior, output, errors, or diagnostics
+- Missing, unclear, or conflicting documentation
+- Unexpected CLI, codemod, Skill, or upgrade behavior and non-obvious workarounds
+
+Continue the current user request without reporting immediately. Routine debugging is not feedback. Verify changes before retaining them as feedback candidates. Never retain code, logs, paths, URLs, secrets, personal information, or project-specific data.
+
+Retain qualifying friction even if it is later fixed or worked around; record the final outcome during the reporting pass.
+
+Before the final response, run one reporting pass. If candidates remain, from this file's directory run `npx --no-install next internal agent-feedback-instructions` once without piping or truncating its output. Follow its output or error guidance. If a network sandbox blocks it, retry with network access; if it still returns no output, continue normally.
+
+<!-- END:nextjs-agent-feedback -->
+
+## Project docs
+
+> **CRITICAL: ALWAYS read the relevant instructions file(s) in the `/docs` directory BEFORE generating ANY code.** This is incredibly important. Do not write, edit, or scaffold code until you have read every `/docs` file relevant to the task. If several areas are involved (e.g. auth and UI), read all of the matching files. The rules in `/docs` take precedence over your own assumptions and defaults.
+
+- [Authentication rules](docs/auth.instructions.md) — Supabase-only auth, protected `/dashboard`, homepage redirect, and sign in/sign up modals. Read before touching anything auth-related.
+- [UI rules](docs/ui.instructions.md) — shadcn/ui only; never create custom components. Read before touching any UI.
