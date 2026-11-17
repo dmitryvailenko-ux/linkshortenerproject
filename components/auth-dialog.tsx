@@ -103,13 +103,23 @@ function AuthForm({
   );
 }
 
-export function AuthDialog() {
-  const [mode, setMode] = useState<Mode>("sign-in");
+export function AuthDialog({
+  className = "mt-8 w-fit",
+  initialMode = "sign-in",
+  label = "Sign in",
+  variant = "default",
+}: {
+  className?: string;
+  initialMode?: Mode;
+  label?: string;
+  variant?: "default" | "outline" | "ghost";
+}) {
+  const [mode, setMode] = useState<Mode>(initialMode);
 
   return (
     <Dialog>
-      <DialogTrigger render={<Button className="mt-8 w-fit" />}>
-        Sign in
+      <DialogTrigger render={<Button className={className} variant={variant} />}>
+        {label}
       </DialogTrigger>
       <DialogContent>
         <AuthForm
